@@ -99,25 +99,23 @@
 
 
 
-<meta name="description" content="这是一道数论题，因为它开在了数论专题的练习里。我晚上灵感来了想出了这种看起来不复杂的办法，大数据也是秒出答案。//这里的二分法应该是伪二分法，因为我觉得数据太大的二分法也很麻烦。">
 <meta name="keywords" content="c++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LightOJ-Trailing Zero">
 <meta property="og:url" content="http://waidzsalome.cn/2017/12/21/Trailing-Zero/index.html">
 <meta property="og:site_name" content="waidzsalome&#39;s home">
-<meta property="og:description" content="这是一道数论题，因为它开在了数论专题的练习里。我晚上灵感来了想出了这种看起来不复杂的办法，大数据也是秒出答案。//这里的二分法应该是伪二分法，因为我觉得数据太大的二分法也很麻烦。">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="http://waidzsalome.cn/2017/12/21/Trailing-Zero/body.png">
 <meta property="og:image" content="http://waidzsalome.cn/2017/12/21/Trailing-Zero/title.JPG">
 <meta property="og:image" content="http://waidzsalome.cn/2017/12/21/Trailing-Zero/describe.JPG">
 <meta property="og:image" content="http://waidzsalome.cn/2017/12/21/Trailing-Zero/input.JPG">
 <meta property="og:image" content="http://waidzsalome.cn/2017/12/21/Trailing-Zero/output.JPG">
 <meta property="og:image" content="http://waidzsalome.cn/2017/12/21/Trailing-Zero/SampleInput.JPG">
 <meta property="og:image" content="http://waidzsalome.cn/2017/12/21/Trailing-Zero/SampleOutput.JPG">
-<meta property="og:updated_time" content="2017-12-21T10:08:32.245Z">
+<meta property="og:updated_time" content="2018-05-26T07:10:13.829Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LightOJ-Trailing Zero">
-<meta name="twitter:description" content="这是一道数论题，因为它开在了数论专题的练习里。我晚上灵感来了想出了这种看起来不复杂的办法，大数据也是秒出答案。//这里的二分法应该是伪二分法，因为我觉得数据太大的二分法也很麻烦。">
-<meta name="twitter:image" content="http://waidzsalome.cn/2017/12/21/Trailing-Zero/title.JPG">
+<meta name="twitter:image" content="http://waidzsalome.cn/2017/12/21/Trailing-Zero/body.png">
 
 
 
@@ -401,11 +399,15 @@
       
 
       
-        <img src="/2017/12/21/Trailing-Zero/title.JPG">
+        <img src="/2017/12/21/Trailing-Zero/body.png">
+<a id="more"></a>
+<img src="/2017/12/21/Trailing-Zero/title.JPG">
 <img src="/2017/12/21/Trailing-Zero/describe.JPG">
 <img src="/2017/12/21/Trailing-Zero/input.JPG">
 <img src="/2017/12/21/Trailing-Zero/output.JPG">
-<p>这是一道数论题，因为它开在了数论专题的练习里。我晚上灵感来了想出了这种看起来不复杂的办法，大数据也是秒出答案。//这里的二分法应该是伪二分法，因为我觉得数据太大的二分法也很麻烦。<br><a id="more"></a><br><img src="/2017/12/21/Trailing-Zero/SampleInput.JPG"><br><img src="/2017/12/21/Trailing-Zero/SampleOutput.JPG"></p>
+<p>这是一道数论题，因为它开在了数论专题的练习里。我晚上灵感来了想出了这种看起来不复杂的办法，大数据也是秒出答案。//这里的二分法应该是伪二分法，因为我觉得数据太大的二分法也很麻烦。</p>
+<img src="/2017/12/21/Trailing-Zero/SampleInput.JPG">
+<img src="/2017/12/21/Trailing-Zero/SampleOutput.JPG">
 <h2 id="大意"><a href="#大意" class="headerlink" title="大意"></a>大意</h2><p>题目给出末尾0的个数，让你找最小数字，使他的阶乘末尾的0的个数是题目要求的。</p>
 <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>你的先知道怎么判断一个数的阶乘末尾又几个0；<br>当2和5相乘，会出现0；只要5的倍数相乘都会出现0；而像25、125这样的数字又有不止一个0。所以怎么算呢？看代码吧！<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">ll judge(ll n)</div><div class="line">&#123;</div><div class="line">    ll sum=0;</div><div class="line">    <span class="keyword">while</span>(n)</div><div class="line">    &#123;</div><div class="line">        sum+=n/5;</div><div class="line">        n/=5;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">return</span> sum;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>为什么呢？我也不造。。。我也是用别人的结论！<br>然后为了省时间我们得确定一个范围，确保答案所求的数字在这个范围内。<br>由于上面的算法，显然，所求数字的最大值不超过5Xnum，num为所给数字；最小值我没仔细计算过到底除以几可以达到最优的最小值，先暂定为num/2X5。<br>接下来用我的伪二分法开始查找，并用judge函数判断。有的数字不存在解，在判断的时候会发现它每一次的（le+ri)/2的值和上一次运算是相等的！这时候加一个判断就可以跳出循环了！<br>另说一句，这里的二分法不适用与num&lt;=5的时候，所以小于5的时候拿出来特判就行了！<br>当我们找到答案时，我们会发现这不一定是最小值，原因上面的判断函数是整数啊。。。所以这是我们再次寻找最小值，找到后立即跳出循环就是所求答案了！</p>
